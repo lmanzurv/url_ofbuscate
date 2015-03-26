@@ -1,0 +1,21 @@
+{% load obfuscate %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ULR obfuscate test</title>
+    </head>
+
+    <body>
+        <h1>Obfuscate in template</h1>
+        <p>The view receives a name parameter</p>
+        <p><a href="{% url 'obfuscated_link' 'Laura Manzur'|obfuscate %}">Obfuscated link: {% url 'obfuscated_link' 'Laura'|obfuscate %}</a></p>
+
+        <h1>Obfuscate from view</h1>
+        {% for link in links %}
+        <p><a href="{% url 'obfuscated_link' link %}">Obfuscated link in view: {% url 'obfuscated_link' link %}</a></p>
+        {% endfor %}
+    </body>
+
+</html>
