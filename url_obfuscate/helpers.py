@@ -4,22 +4,29 @@ import binascii
 
 def generate_url_pattern(url, params=[], leaf=True):
     url_array = url.split('/')
-    url_array = [url for url in url_array if url != str()]
+    url_array = [url_fragment for url_fragment in url_array if url_fragment != str()]
+
     response_array = list()
+
     for url_fragment in url_array:
         response_array.append(obfuscate(url_fragment))
+
     response = str()
     if len(response_array) > 0:
         response = '/'.join(str(el) for el in response_array)
+
     if params:
         for arg in params:
 
             response = '{0}/{1}'.format(response, arg)
+
     if len(response_array) > 0:
-        if not response.endswith('/'):
+        if not response.endswith('/') and not response.endswith('?'):
             response = '{0}/'.format(response)
+
     if leaf:
         response = '{0}$'.format(response)
+
     return r'^' + response
 
 def _padd(secret, blocksize=16, padding=' '):

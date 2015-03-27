@@ -12,3 +12,7 @@ def home(request):
 @deobfuscate
 def obfuscated_link(request, name):
     return render(request, 'obfuscate_result.html', { 'name': name })
+
+@deobfuscate
+def optional_param(request, param=None):
+    return render(request, 'optional_param.html', { 'param': param })

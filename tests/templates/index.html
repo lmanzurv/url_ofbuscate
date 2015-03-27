@@ -16,6 +16,10 @@
         {% for link in links %}
         <p><a href="{% url 'obfuscated_link' link %}">Obfuscated link in view: {% url 'obfuscated_link' link %}</a></p>
         {% endfor %}
+
+        <h1>Obfuscate with optional param</h1>
+        <p><a href="{% url 'optional_param' %}">Link without param: {% url 'optional_param' %}</a></p>
+        <p><a href="{% url 'optional_param' 'This is the param'|obfuscate %}">Link with param: {% url 'optional_param' 'This is the param'|obfuscate %}</a></p>
     </body>
 
 </html>
